@@ -1,6 +1,9 @@
+import math
 import time
 
 def FindGCD1(m : int, n : int) -> int :
+    m = abs(m)
+    n = abs(n)
     if(m == 0 and n == 0): # gcd(0,0) = 0
         return 0
     

@@ -4,6 +4,8 @@ import math
 primeListMemo = []
 
 def FindGCD2(m: int, n: int) -> int:
+    m = abs(m)
+    n = abs(n)
     if m == 0 and n == 0:
         return 0
     if m == 0 or n == 0:
@@ -34,9 +36,12 @@ def erasPrimeFactor(x: int) -> list:
     global prevInput
     
     if primeListMemo == [] or x > prevInput: # if primeListMemo is empty or next input is larger than prev
+        print("HEYY")
         primeList = []  # all prime numbers from 2 to x
         Prime = [True] * (x + 1) 
         for i in range(2, int(math.sqrt(x) + 1 )): 
+            print("input," ,x)
+            print("i : ",i)
 # For n not to be prime, it needs at least two prime factors. The square root of n provides a 'pivot': if x is less than the square root of n, then y=nx is greater than the square root of n
 # So, if no prime factors are found by the square root of n
 # and n is composite, at least two factors of n must be greater than the square root of n, which is an obvious contradiction.
@@ -48,7 +53,7 @@ def erasPrimeFactor(x: int) -> list:
             primeList.append(i)  # append the prime number to the list
             if i not in primeListMemo: # if i is not in primeListMemo before, append it
                 primeListMemo.append(i)
-    
+    print("primeList : ",primeList)
     index = len(primeListMemo) # ทำให้บรรทัด 53 ทำงานได้กรณี input > primeListMemo ตัวสุดท้าย
     for i, prime in enumerate(primeListMemo): # check that input is smaller than primeListMemo
         if prime > x:
@@ -65,11 +70,15 @@ def erasPrimeFactor(x: int) -> list:
     for prime in primeList:
         while x % prime == 0:
             primeFactors.append(prime)
+
             x = x // prime
+            
     prevInput = x
     return primeFactors 
 
 # main 
+# m = 15
+# n = 14
 m = 30
 n = 33
 start_time = time.perf_counter()

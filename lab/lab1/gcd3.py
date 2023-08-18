@@ -4,9 +4,12 @@
 # if m = n, then GCD(m, n) = m = n
 # if m< n, thenGCD(m, n) = GCD(m, n %m) = GCD(n %m, n)
 
+import math
 import time
 
 def FindGCD3(m : int, n : int) -> int : # recursive until cant be divided anymore
+    m = abs(m)
+    n = abs(n)
     if(m == 0 and n == 0):
         return 0
     if ( m == 0 or n == 0):
@@ -19,8 +22,8 @@ def FindGCD3(m : int, n : int) -> int : # recursive until cant be divided anymor
         return m 
     
     
-m = 5678
-n = 3345
+m = -6
+n = -9
 start_time = time.perf_counter()
 result = FindGCD3(m, n)
 end_time = time.perf_counter()
