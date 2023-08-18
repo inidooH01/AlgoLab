@@ -7,26 +7,33 @@
 import math
 import time
 
-def FindGCD3(m : int, n : int) -> int : # recursive until cant be divided anymore
-    m = abs(m)
-    n = abs(n)
-    if(m == 0 and n == 0):
+def FindGCD3(*numbers):
+    def FindGCD2(a, b):
+        a = abs(a)
+        b = abs(b)
+        if a == 0 and b == 0:
+            return 0
+        if a == 0 or b == 0:
+            return max(a, b)
+        while b:
+            a, b = b, a % b
+        return a
+    
+    if len(numbers) == 0:
         return 0
-    if ( m == 0 or n == 0):
-        return max(m,n)
-    if m > n: 
-        return FindGCD3(m % n, n)
-    elif m < n:
-        return FindGCD3(m , n % m )
+    elif len(numbers) == 1:
+        return abs(numbers[0])
     else:
-        return m 
+        gcd_result = numbers[0]
+        for num in numbers[1:]:
+            gcd_result = FindGCD2(gcd_result, num)
+        return gcd_result
+
     
-    
-m = -6
-n = -9
+numbers = [189,252,1197,292005]
 start_time = time.perf_counter()
-result = FindGCD3(m, n)
+result = FindGCD3(*numbers)
 end_time = time.perf_counter()
 
-print(f"The GCD of {m} and {n} by Euclidean algo is {result}")
+print(f"The GCD of  {', '.join(map(str, numbers))} by Euclidean algo is {result}")
 print(f"Time taken: {(end_time - start_time) *1000} milliseconds")
