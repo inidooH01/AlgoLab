@@ -1,0 +1,22 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Create a new graph
+G = nx.Graph()
+file_path='Example_LAB2.txt'
+graph=[]
+# Open the file in read mode and read line by line using a for loop
+with open(file_path, 'r') as file:
+    row=[]
+    for line in file:
+        row=line.strip('\n').split(" ")
+        graph.append(row)
+        print(row)
+#print(len(graph))
+for i in range(len(graph)):
+    for j in range(i+1):
+        if graph[i][j]=="1":
+            G.add_edge(int(i),int(j))
+           #print(f"{i} , {j}")
+        #print(graph[i][j], end="")
+# print(list(G.edges())) #Illustrate the graph edges
